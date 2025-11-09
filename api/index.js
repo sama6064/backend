@@ -16,7 +16,7 @@ mongoose
     console.log("DB is not connected", err);
   });
 
-app.use("/", (req, res) => {
+app.get("/", (req, res) => {
   res.status(200).json({
     message: "welcome back end",
   });
