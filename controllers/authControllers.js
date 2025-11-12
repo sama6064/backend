@@ -6,7 +6,7 @@ const sign = require("jwt-encode");
 
 const register = async (req, res) => {
   try {
-    const { name, email, phone, password } = req.body;
+    const { name, email, phone, password , role } = req.body;
 
     if (!name || !email || !phone || !password) {
       return res.status(400).json({
@@ -30,6 +30,7 @@ const register = async (req, res) => {
       email,
       phone,
       password: hashedPass,
+      role,
     });
 
     await newUser.save();
