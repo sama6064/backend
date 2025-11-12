@@ -19,6 +19,11 @@ const userModel = new mongoose.Schema(
       required: true,
       type: String,
     },
+    role:{
+      required: true,
+      type: String,
+      default:"user",
+    }
   },
   { timestamps: true } //created at & updated at
 );
