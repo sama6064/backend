@@ -2,24 +2,26 @@ const cart = require("../models/cartmodel");
 
 const addToCart = async (req, res) => {
     try {
-        const userId = req.user._id;
-        const { productId } = req.body;
-        let userCart = await cart.findOne({ user: userId });
+    const userId = req.user._id;
+    const { productId } = req.body;
 
-        if (userCart) {
+    let userCart = await cart.findOne({ user: userId });
+
+    if (userCart) {
     
-            await cart.findOneAndUpdate(
-                { user: userId },
-                { products: [...userCart.products, { productid: productId }] }
-            );
-        } else {
+        userCart.products = [...userCart.products, { productid: productId }];
+        await userCart.save(); 
+    } else {
+
             userCart = new cart({
-                user: userId,
-                products: [{ productid: productId }],
-            });
-            await userCart.save();
-        }
-        userCart = await cart.findOne({ user: userId });
+            user: userId,
+            products: [{ productid: productId }],
+        });
+        await userCart.save();
+    }
+
+    userCart = await cart.findOne({ user: userId }).populate("products.productid");
+
         res.status(200).json({ message: "Product added to cart", cart: userCart });
     } catch (error) {
         res.status(500).json({ message: error.message });
