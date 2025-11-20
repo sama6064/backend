@@ -27,7 +27,7 @@ mongoose
 const authRouting = require("../routes/authRoutes");
 app.use("/api/v1/auth", authRouting);
 
-const productRoutes = require("../routes/productRoutes");
+const productRoutes = require("../routes/ProductRoutes");
 app.use("/api/v1/products", productRoutes);
 
 const cartroute = require("../routes/cartRoutes");
