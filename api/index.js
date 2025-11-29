@@ -27,8 +27,6 @@ app.use(
   })
 );
 app.use(express.json());
-console.log("DB_URL from env ===>", process.env.DB_URL);
-console.log("PORT from env ===>", process.env.PORT);
 
 // Connect to MongoDB
 mongoose
