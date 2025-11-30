@@ -11,6 +11,8 @@ let allowed_URL = [
   "https://groovystitches.vercel.app",
   "http://localhost:5173",
 ];
+console.log("db_url is : ", process.env.db_url);
+console.log("PORT is : ", process.env.PORT);
 
 app.use(
   cors({
@@ -27,8 +29,6 @@ app.use(
   })
 );
 app.use(express.json());
-console.log("DB_URL from env ===>", process.env.DB_URL);
-console.log("PORT from env ===>", process.env.PORT);
 
 // Connect to MongoDB
 mongoose
